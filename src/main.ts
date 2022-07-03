@@ -1,17 +1,16 @@
-import { createApp } from 'vue';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { injectionKey, store } from './store';
+import { createApp } from 'vue'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faPhone } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { injectionKey, store } from './store'
 
-import App from './App.vue';
+import App from './App.vue'
+import router from './router/index'
 
-import router from './router/index';
+library.add(faPhone)
 
-library.add(fas);
-
-const app = createApp(App);
-app.use(router);
-app.use(store, injectionKey);
-app.component('font-awesome-icon', FontAwesomeIcon);
-app.mount('#app');
+const app = createApp(App)
+app.use(router)
+app.use(store, injectionKey)
+app.component('FontAwesomeIcon', FontAwesomeIcon)
+app.mount('#app')
