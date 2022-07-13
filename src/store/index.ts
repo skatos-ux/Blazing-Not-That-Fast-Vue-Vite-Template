@@ -3,7 +3,6 @@ import type { Store } from 'vuex'
 import { useStore as baseUseStore, createStore } from 'vuex'
 import createPersistedState from 'vuex-persistedstate'
 
-import Cookies from 'js-cookie'
 import type { RootState } from '@/store/types'
 import { module } from '@/store/module'
 import { instance, routes } from '@/utils/axios'
@@ -21,17 +20,14 @@ export const store = createStore({
 	plugins: [
 		createPersistedState({
 			getState: (key) => {
-				const cookie = Cookies.get(key)
-				if (cookie) {
-					return JSON.parse(cookie)
+				const store = localStorage.getItem(key)
+				if (store) {
+					return JSON.parse(store)
 				}
 				return null
 			},
 			setState: (key, state) => {
-				Cookies.set(key, JSON.stringify(state), {
-					expires: 3,
-					secure: false, // TODO METTRE VRAI QUAND HTTPS
-				})
+				localStorage.setItem(key, JSON.stringify(state))
 			},
 		}),
 	],

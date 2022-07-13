@@ -30,7 +30,7 @@ const axiosRoutes: routesInterface = {
 }
 
 const axiosObject: axiosObjectInterface = {
-	instance: createInstance(''),
+	instance: createInstance(import.meta.env.VITE_DEV_BASEURL),
 	routes: axiosRoutes,
 }
 
